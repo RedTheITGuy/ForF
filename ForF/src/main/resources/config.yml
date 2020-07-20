@@ -1,12 +1,12 @@
 # The minimum amount of time before PVP is first enabled in minutes
-MinFirstPVP: 5
+minFirstPVP: 5
 # The maximum amount of time before PVP is first enabled in minutes
-MaxFirstPVP: 10
+maxFirstPVP: 10
 
 # The minimum amount of time before PVP is toggled on/off in minutes
-MinPVP: 3
+minPVP: 3
 # The maximum amount of time before PVP is toggled on/off in minutes
-MaxPVP: 10
+maxPVP: 10
 
 # Colour codes can be used for all messages using the & symbol (see http://ess.khhq.net/mc/)
 messges:

@@ -1,5 +1,5 @@
 name: ForF
-version: 0.0
+version: 0.1
 description: "The plugin which allows the Friend or Foe server to function, adding needed behaviour."
 main: me.RedTheITGuy.ForF.Main
 api-version: 1.16
