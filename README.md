@@ -1,4 +1,4 @@
-# ForF
+# Friend or Foe Manager Plugin
 The plugin which allows the Friend or Foe server to function, adding needed behaviour.
 
 ## What does it do?
