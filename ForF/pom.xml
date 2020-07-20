@@ -2,9 +2,14 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>me.RedTheITGuy.ForF</groupId>
   <artifactId>ForF</artifactId>
-  <version>0.1</version>
+  <version>0.2</version>
   <name>Friend or Foe Manager Plugin</name>
   <description>The plugin which allows the Friend or Foe server to function, adding needed behaviour.</description>
+  
+  <properties>
+    <maven.compiler.target>1.8</maven.compiler.target>
+    <maven.compiler.source>1.8</maven.compiler.source>
+  </properties>
   
   <repositories>
       <!-- This adds the Spigot Maven repository to the build -->
@@ -31,6 +36,6 @@
         <artifactId>worldguard-bukkit</artifactId>
         <version>7.0.3</version>
         <scope>provided</scope>
-    </dependency>
+      </dependency>
   </dependencies>
 </project>
