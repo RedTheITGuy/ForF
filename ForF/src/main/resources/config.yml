@@ -1,0 +1,26 @@
+# The minimum amount of time before PVP is first enabled in minutes
+MinFirstPVP: 5
+# The maximum amount of time before PVP is first enabled in minutes
+MinFirstPVP: 10
+
+# The minimum amount of time before PVP is toggled on/off in minutes
+MinPVP: 3
+# The maximum amount of time before PVP is toggled on/off in minutes
+MinPVP: 10
+
+# Colour codes can be used for all messages using the & symbol (see http://ess.khhq.net/mc/)
+messges:
+   enabled:
+      # What should be the title shown when PVP is turned on
+      title: "&cPVP is now &lENABLED&r&c!"
+      # What should be the subtitle (under the title) shown when PVP is turned on
+      subtitle: "&7Good luck!"
+      # What should be posted in chat when PVP is turned on (leave blank for no message)
+      message: "&c&l[ForF]&r&f PVP is now enabled."
+   disabled:
+      # What should be the title shown when PVP is turned off
+      title: "&aPVP is now &lDISABLED&r&a!"
+      # What should be the subtitle (under the title) shown when PVP is turned off
+      subtitle: "&7You can rest... for now!"
+      # What should be posted in chat when PVP is turned off (leave blank for no message)
+      message: "&2&l[ForF]&r&f PVP is now disabled."
