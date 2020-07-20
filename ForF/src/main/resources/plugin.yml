@@ -1,0 +1,7 @@
+name: ForF
+version: 0.0
+description: "The plugin which allows the Friend or Foe server to function, adding needed behaviour."
+main: me.RedTheITGuy.ForF.Main
+api-version: 1.16
+author: Red_the_IT_Guy
+depend: [WorldGuard]
