@@ -1,8 +1,10 @@
 package me.RedTheITGuy.ForF;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
+
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Sound;
@@ -10,6 +12,7 @@ import org.bukkit.SoundCategory;
 import org.bukkit.World;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
+
 import com.sk89q.worldedit.bukkit.BukkitAdapter;
 import com.sk89q.worldguard.WorldGuard;
 import com.sk89q.worldguard.protection.flags.Flags;
@@ -20,7 +23,7 @@ import com.sk89q.worldguard.protection.regions.GlobalProtectedRegion;
 import com.sk89q.worldguard.protection.regions.ProtectedRegion;
 import com.sk89q.worldguard.protection.regions.RegionContainer;
 
-public class EnablePVP implements Runnable {
+public class DisablePVP implements Runnable {
 	@Override
 	public void run() {
 		// Gets the config file
@@ -28,10 +31,10 @@ public class EnablePVP implements Runnable {
 		// Gets info from the config
 		long minTime = config.getLong("minPVP");
 		long maxTime = config.getLong("maxPVP");
-		String title = config.getString("messages.enabled.title");
-		String subtitle = config.getString("messages.enabled.subtitle");
-		String message = config.getString("messages.enabled.message");
-		String soundString = config.getString("sound.enabled");
+		String title = config.getString("messages.disabled.title");
+		String subtitle = config.getString("messages.disabled.subtitle");
+		String message = config.getString("messages.disabled.message");
+		String soundString = config.getString("sound.disabled");
 		
 		// Converts the colour codes in the text
 		if (title != null) title = ChatColor.translateAlternateColorCodes('&', title);
@@ -78,7 +81,7 @@ public class EnablePVP implements Runnable {
 				localRegions.addRegion(global);
 			}
 			// Disables PVP in that region
-			global.setFlag(Flags.PVP, StateFlag.State.ALLOW);
+			global.setFlag(Flags.PVP, StateFlag.State.DENY);
 			// Attempts to save the region
 			try {
 				localRegions.save();
@@ -100,9 +103,9 @@ public class EnablePVP implements Runnable {
 			// Sends a message if there is one
 			if (message != "" && message != null) player.sendMessage(message); 
 		}
-
+		
 		// Creates the thread to run the EnablePVP class
-		Thread thread = new Thread(new DisablePVP());
+		Thread thread = new Thread(new EnablePVP());
 		// Runs the EnablePVP class on a seperate thread
 		thread.start();
 		
