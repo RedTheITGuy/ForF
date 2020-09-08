@@ -26,3 +26,19 @@ sound:
    enabled: "ENTITY_ENDER_DRAGON_AMBIENT"
    # The sound to be played when PVP is turned off
    disabled: "BLOCK_BEACON_ACTIVATE"
+
+# Colour codes can be used for the title using the & symbol (see http://ess.khhq.net/mc/)
+bar:
+  # The style of the bar (see https://hub.spigotmc.org/javadocs/spigot/org/bukkit/boss/BarStyle.html)
+  style: "SOLID"
+
+  enabled:
+    # The title for when PVP is on
+    title: "&6PVP is &4&lENABLED" 
+    # The bar colour when PVP is on (see https://hub.spigotmc.org/javadocs/spigot/org/bukkit/boss/BarColor.html)
+    colour: "RED"
+  disabled:
+    # The title for when PVP is off
+    title: "&6PVP is &2&lDISABLED" 
+    # The bar colour when PVP is off (see https://hub.spigotmc.org/javadocs/spigot/org/bukkit/boss/BarColor.html)
+    colour: "GREEN"

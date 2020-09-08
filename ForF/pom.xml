@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>me.RedTheITGuy.ForF</groupId>
   <artifactId>ForF</artifactId>
-  <version>1.0</version>
+  <version>1.1</version>
   <name>Friend or Foe Manager Plugin</name>
   <description>The plugin which allows the Friend or Foe server to function, adding needed behaviour.</description>
   

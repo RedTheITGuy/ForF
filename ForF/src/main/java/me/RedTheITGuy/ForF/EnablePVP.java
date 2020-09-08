@@ -5,9 +5,13 @@ import java.util.Random;
 import java.util.concurrent.TimeUnit;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.NamespacedKey;
 import org.bukkit.Sound;
 import org.bukkit.SoundCategory;
 import org.bukkit.World;
+import org.bukkit.boss.BarColor;
+import org.bukkit.boss.BarStyle;
+import org.bukkit.boss.KeyedBossBar;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import com.sk89q.worldedit.bukkit.BukkitAdapter;
@@ -32,11 +36,14 @@ public class EnablePVP implements Runnable {
 		String subtitle = config.getString("messages.enabled.subtitle");
 		String message = config.getString("messages.enabled.message");
 		String soundString = config.getString("sound.enabled");
+		String barTitle = config.getString("bar.enabled.title");
+		String barColourString = config.getString("bar.enabled.colour");
 		
 		// Converts the colour codes in the text
 		if (title != null) title = ChatColor.translateAlternateColorCodes('&', title);
 		if (subtitle != null) subtitle = ChatColor.translateAlternateColorCodes('&', subtitle);
 		if (message != null) message = ChatColor.translateAlternateColorCodes('&', message);
+		if (barTitle != null) barTitle = ChatColor.translateAlternateColorCodes('&', barTitle);
 		
 		// Attempts to convert the sound string to a sound
 		Sound sound = Sound.valueOf(soundString);
@@ -58,9 +65,9 @@ public class EnablePVP implements Runnable {
 		
 		// Creates a list to store the region manager of all the worlds
 		List<RegionManager> regions = new ArrayList<>();
-		// Runs for ever world loaded by spigot
+		// Runs for ever world loaded by Spigot
 		for (World world : Bukkit.getServer().getWorlds()) {
-			// Convers the world to a world edit varible because the world guard api is terrible :)
+			// Converts the world to a world edit variable because the world guard API is terrible :)
 			com.sk89q.worldedit.world.World worldEditWorld = BukkitAdapter.adapt(world);
 			// Adds the region manager for the world to the regions list
 			regions.add(container.get(worldEditWorld));
@@ -91,6 +98,44 @@ public class EnablePVP implements Runnable {
 			}
 		}
 		
+		// Creates the variable to store the bar style
+		BarColor barColour = BarColor.RED;
+		// Tries to get the bar style from the config
+		try {
+			barColour = BarColor.valueOf(barColourString);
+		}
+		// Catches if the config is set incorrectly
+		catch (IllegalArgumentException exception) {
+			Bukkit.getLogger().warning("Cannot get bar colour for entry in config, please insure the config has a valid bar style.");
+		}
+		
+		// Creates the key for the boss bar
+		NamespacedKey barKey = new NamespacedKey(Bukkit.getPluginManager().getPlugin("ForF"), "pvpBar");
+		// Gets the boss bar
+		KeyedBossBar bossBar = Bukkit.getServer().getBossBar(barKey);
+		// Runs if the bar doesn't exist
+		if (bossBar == null) {
+			// Creates the variable to store the bar style
+			BarStyle barStyle = BarStyle.SOLID;
+			// Tries to get the bar style from the config
+			try {
+				barStyle = BarStyle.valueOf(config.getString("bar.style"));
+			}
+			// Catches if the config is set incorrectly
+			catch (IllegalArgumentException exception) {
+				Bukkit.getLogger().warning("Cannot get bar style for entry in config, please insure the config has a valid bar style.");
+			}
+			
+			// Creates the boss bar
+			bossBar = Bukkit.getServer().createBossBar(barKey, barTitle, barColour, barStyle);
+		}
+		else {
+			// Changes the boss bar's title
+			bossBar.setTitle(barTitle);
+			// Changes the boss bar's colour
+			bossBar.setColor(barColour);
+		}
+		
 		// Runs for every player in the server
 		for (Player player : Bukkit.getServer().getOnlinePlayers()) {
 			// Sends the title to the player
@@ -103,7 +148,7 @@ public class EnablePVP implements Runnable {
 
 		// Creates the thread to run the EnablePVP class
 		Thread thread = new Thread(new DisablePVP());
-		// Runs the EnablePVP class on a seperate thread
+		// Runs the EnablePVP class on a separate thread
 		thread.start();
 		
 	}
