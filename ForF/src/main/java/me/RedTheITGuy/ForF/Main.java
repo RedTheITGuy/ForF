@@ -99,8 +99,19 @@ public class Main extends JavaPlugin implements Listener{
 		NamespacedKey barKey = new NamespacedKey(this, "pvpBar");
 		// Gets the boss bar
 		KeyedBossBar bossBar = Bukkit.getServer().getBossBar(barKey);
-		// Creates the bar if it doesn't exist
-		if (bossBar == null) bossBar = Bukkit.getServer().createBossBar(barKey, barTitle, barColour, barStyle);
+		// Runs if the bar doesn't exist
+		if (bossBar == null) {
+			// Creates the bar
+			bossBar = Bukkit.getServer().createBossBar(barKey, barTitle, barColour, barStyle);
+		}
+		else {
+			// Sets the bar style
+			bossBar.setStyle(barStyle);
+			// Sets the boss bar's title
+			bossBar.setTitle(barTitle);
+			// Sets the boss bar's colour
+			bossBar.setColor(barColour);
+		}
 		
 		// Registers the listener for the player violation event
 		Bukkit.getServer().getPluginManager().registerEvents(this, this);
